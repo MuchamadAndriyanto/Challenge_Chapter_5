@@ -1,11 +1,13 @@
 package com.example.challengechap_5
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.challengechap_5.databinding.ItemTvBinding
 import com.example.challengechap_5.model.Result
+import com.example.challengechap_5.model.Tv
 
 class TvAdapter(var listTv: List<Result>): RecyclerView.Adapter<TvAdapter.ViewHolder>() {
 
@@ -29,17 +31,17 @@ class TvAdapter(var listTv: List<Result>): RecyclerView.Adapter<TvAdapter.ViewHo
         holder.binding.tvDate.text = list.firstAirDate
         Glide.with(holder.itemView).load("https://image.tmdb.org/t/p/w200/${list.posterPath}").fitCenter().into(holder.binding.imgView)
 
-//        holder.binding.cvDetailMoview.setOnClickListener {
-//
-//            val title = list.name
-//            val date = list.firstAirDate
-//            val overview = list.overview
-//            val image = list.posterPath
-//
-//            val movieData = Movie(title,date,overview,image)
-//            val Intent = Intent(holder.itemView.context, DetailActivity::class.java)
-//            Intent.putExtra("data_movie",movieData)
-//            holder.itemView.context.startActivity(Intent)
-//        }
+        holder.binding.detailTv.setOnClickListener {
+
+            val title = list.name
+            val date = list.firstAirDate
+            val overview = list.overview
+            val image = list.posterPath
+
+            val movieData = Tv(title,date,overview,image)
+            val Intent = Intent(holder.itemView.context, DetailActivity::class.java)
+            Intent.putExtra("data_tv",movieData)
+            holder.itemView.context.startActivity(Intent)
+        }
     }
 }
